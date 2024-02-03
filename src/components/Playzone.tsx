@@ -1,9 +1,5 @@
+import { Gameboard } from "./Gameboard";
+
 export const Playzone = () => {
-  return (
-    <div>
-      <div>Name</div>
-      <div>Board</div>
-      <div>Controlls</div>
-    </div>
-  );
+  return <Gameboard />;
 };

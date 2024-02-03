@@ -1,4 +1,5 @@
 import { SCORE } from "../api/score-api";
+import { SCORES } from "../mock/mock-score-data";
 import { api } from "./service-helper";
 
 export async function getScore(
@@ -6,19 +7,17 @@ export async function getScore(
   onError: (error: any) => void,
   onFinally: () => void = () => {}
 ) {
-  console.log("getScore called");
-
-  api
-    .get(SCORE)
-    .then((res) => {
-      console.log("res: ", res);
-      onSuccess(res.data);
-    })
-    .catch((err) => {
-      console.error("Error in getScore:", err);
-      onError(err);
-    })
-    .finally(() => {
-      onFinally();
-    });
+  // api
+  //   .get(SCORE)
+  //   .then((res) => {
+  //     onSuccess(res.data);
+  //   })
+  //   .catch((err) => {
+  //     onError(err);
+  //   })
+  //   .finally(() => {
+  //     onFinally();
+  //   });
+  onSuccess(SCORES);
+  onFinally();
 }
