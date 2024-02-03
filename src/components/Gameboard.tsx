@@ -16,7 +16,9 @@ export const Gameboard = () => {
         ...prev.slice(index + 1),
       ]);
       if (value) {
-        setFocused(index + 1);
+        if (index < 9) {
+          handleFocus(index + 1);
+        }
       }
     }
   };
@@ -34,12 +36,25 @@ export const Gameboard = () => {
 
   const handleResetTiles = () => {
     setInput(new Array(10).fill(""));
-    setFocused(0);
+    handleFocus(0);
   };
 
   const handleKeyDown = (index: number, event: any) => {
-    if (event.key === "Backspace" && index > 0 && input[index] === "") {
-      setFocused(index - 1);
+    if (event.key === "Backspace") {
+      if (input[index]) {
+        setInput((prev) => [
+          ...prev.slice(0, index),
+          "",
+          ...prev.slice(index + 1),
+        ]);
+      }
+      if (index > 0) {
+        handleFocus(index - 1);
+      }
+    } else if (event.key === "ArrowLeft") {
+      handleFocus(index - 1);
+    } else if (event.key === "ArrowRight") {
+      handleFocus(index + 1);
     }
   };
 
