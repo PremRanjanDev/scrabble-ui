@@ -1,47 +1,24 @@
 import { RefreshRounded } from "@mui/icons-material";
 import { CircularProgress, IconButton } from "@mui/material";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { getScore } from "../services/score-service";
+import { useScore } from "../contexts/ScoreProvider";
 import { getTimeDifference } from "../utils/date-time";
 
 export const Leaderboard = () => {
-  const [scores, setScores] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    loadScores();
-  }, []);
-
-  const loadScores = () => {
-    setIsLoading(true);
-    getScore(
-      (data) => {
-        setScores(data);
-      },
-      (error) => {
-        toast.error("Unable to load scores at the moment.");
-      },
-      () => {
-        setIsLoading(false);
-      }
-    );
-  };
-
+  const scores = useScore();
   return (
     <div className="border rounded-lg bg-orange-50">
       <div className="flex justify-between items-center px-4 rounded-t-lg text-white bg-orange-400">
         <div className="text-lg font-semibold">Leaderboard</div>
-        <IconButton onClick={loadScores} title="Reload">
+        <IconButton onClick={scores.reload} title="Reload">
           <RefreshRounded className="text-white" />
         </IconButton>
       </div>
       <div className="py-2 px-4">
-        {isLoading ? (
+        {scores.loading ? (
           <CircularProgress />
-        ) : scores && scores.length ? (
+        ) : scores && scores.results.length ? (
           <div className="flex flex-col gap-4">
-            {scores.map((s, index) => (
+            {scores.results.map((s, index) => (
               <div
                 key={index}
                 className="flex gap-2 justify-between items-center border border-solid border-orange-500 bg-orange-100 rounded-lg px-4 py-2"

@@ -30,8 +30,3 @@ export const getTimeDifference = (date: Date | string): string => {
     return "Just now";
   }
 };
-
-// const exampleDate = "2024-01-26T21:02:20.161025";
-// const exampleDate = new Date();
-// const result: string = getTimeDifference(exampleDate);
-// console.log(result);

@@ -1,1 +1,1 @@
-export const SCORE = "/score";
+export const API_SCORE = "/score";
