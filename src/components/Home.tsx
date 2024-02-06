@@ -6,7 +6,7 @@ export const Home = () => {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   return (
-    <div className="flex justify-between gap-4 p-10 ">
+    <div className="flex justify-between gap-4 p-8 ">
       <Gameboard onViewTopScores={() => setShowLeaderboard(true)} />
       {showLeaderboard && (
         <Leaderboard onClose={() => setShowLeaderboard(false)} />
