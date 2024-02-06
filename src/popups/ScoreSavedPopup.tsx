@@ -14,10 +14,10 @@ export const ScoreSavedPopup = ({ rank, open, onClose }: Props) => {
       onClose={onClose}
       className="flex items-center justify-center "
     >
-      <Box className="flex flex-col justify-center items-center bg-white w-80 h-96 rounded-lg">
-        <div className="text-3xl">Congratulation!</div>
-        <div className="text-xl">You are rank</div>
-        <div className=" text-white bg-orange-400 px-2 rounded-lg">{rank}</div>
+      <Box className="flex flex-col justify-center items-center bg-white w-96 h-80 rounded-lg">
+        <div className="text-3xl">{rank <= 10 ? "Great!" : "Nice!"}</div>
+        <div className="text-xl">Congratulations, you are on rank</div>
+        <div className="text-white bg-orange-400 px-2 rounded-lg">{rank}</div>
       </Box>
     </Modal>
   );

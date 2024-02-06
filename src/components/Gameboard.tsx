@@ -7,7 +7,11 @@ import { saveScore } from "../services/score-service";
 import { CHAR_SCORES } from "../utils/constants";
 import { Loader } from "./Loader";
 
-export const Gameboard = () => {
+export const Gameboard = ({
+  onViewTopScores,
+}: {
+  onViewTopScores: () => void;
+}) => {
   const scores = useScore();
   const maxTiles = 10;
   const [name, setName] = useState<string>("");
@@ -145,7 +149,7 @@ export const Gameboard = () => {
           >
             {tiles.map((value, index) => (
               <TextField
-                key={index}
+                key={`tile-${index + 1}`}
                 id={`tile-${index}`}
                 InputProps={{
                   className: "w-12 h-12",
@@ -154,7 +158,7 @@ export const Gameboard = () => {
                 inputProps={{
                   maxLength: 1,
                   className:
-                    "text-center caret-transparent !text-3xl !font-bold !p-0",
+                    "text-center caret-transparent !text-3xl !font-semibold !p-0",
                 }}
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 onClick={() => setSelected(index)}
@@ -185,13 +189,13 @@ export const Gameboard = () => {
             Save Score
           </Button>
 
-          {/* <Button
-          variant="outlined"
-          className="!normal-case !rounded-lg !py-2 !px-5"
-          onClick={() => setIsCollapsed(true)}
-        >
-          View Top Scores
-        </Button> */}
+          <Button
+            variant="outlined"
+            className="!normal-case !rounded-lg !py-2 !px-5"
+            onClick={onViewTopScores}
+          >
+            View Top Scores
+          </Button>
         </div>
       </div>
     </>
